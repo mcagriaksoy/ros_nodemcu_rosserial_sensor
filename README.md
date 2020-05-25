@@ -1,5 +1,5 @@
 # ros_nodemcu_rosserial_sensor project 
-ROS Controlled NodeMCU Sensor read and servo control Project. This project is prepared for Introduction to robotics final lecture which is ongoing master deggre with EE7055 id on Marmara University.
+ROS Controlled NodeMCU Sensor read and servo control Project. This project is prepared for robotics final lecture which is ongoing master deggre with EE7055 id on Marmara University.
 
 # Preliminary Information
 # Nodemcu
