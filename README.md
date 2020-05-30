@@ -8,7 +8,20 @@ NodeMCU is a low-cost open-source IoT platform. It initially included firmware t
 The Robot Operating System (ROS) is a flexible framework for writing robot software. It is a collection of tools, libraries, and conventions that aim to simplify the task of creating complex and robust robot behavior across a wide variety of robotic platforms. Why? Because creating a truly robust, general-purpose robot software is hard.[Ref](https://www.ros.org/about-ros/)
 ## Rosserial
 ROS Serial is a point-to-point version of ROS communications over serial, primarily for integrating low-cost microcontrollers (Arduino) into ROS.[Ref](http://wiki.ros.org/rosserial)
+## MQ sensors
+Detecting and measuring pollution and the main gases is always relevant for a while it is possible to find low-cost, reliable sensors for sale: that’s the ones from the MQ series.
+MQ sensors can detect these type of gases: 
+* MQ-2 = flammable gases such as LPG and propane;
 
+* MQ-3 =  ethanol;
+
+* MQ-4 = methane (CH4) and natural gas;
+
+* MQ-5 = LPG and methane;
+* MQ-6 = LPG and methane;
+* MQ-7 =  carbonic monoxide (CO)  and hydrogen (H2);
+* MQ-8 = hydrogen (H2);
+* MQ-135 = gaseous ammonia (NH3), benzene, ethyl alcohol and carbonic dioxide (CO2).[REF](https://www.open-electronics.org/presenting-mq-sensors-low-cost-gas-and-pollution-detectors/) 
 # Environment
 I have used the [Arduino IDE](https://www.arduino.cc/en/main/software) to embed the rosserial to Arduino based nodemcu. I have worked on ubuntu 18.04 LTS. My ros version is melodic morenia.
 Board, sensors, and servo:
@@ -16,7 +29,7 @@ Board, sensors, and servo:
 
 ![board](https://github.com/mcagriaksoy/ros_nodemcu_rosserial_sensor/blob/master/board_sensors_servo.jpg)
 
-ESP board's information and configuration are not valid on Arduino by default installation. First of all, I have installed that, and Rosserial is included on Arduino IDE from adding the library section. Then, the sensor value read and servo control codes are written. In Ros, nodes and topics are important. We are sending the sensor data under topics via signals. To control the servo, we are waiting for the signal "1" from the master which represent our Linux machine.
+ESP board's information and configuration are not valid on Arduino by default installation. First of all, I have installed that, and Rosserial is included on Arduino IDE from adding the library section. Then, the sensor value read and servo control codes are written. In Ros, nodes and topics are important. We are sending the sensor data under topics via signals. To control the servo, we are waiting for the signal from the master which represent our Linux machine.
 #
 The file of mq_sensor_ROS includes MQ-* sensor configuration with nodemcu board and rosserial features.
 The file of mq_servo_ROS includes MQ-* servo motor configuration with nodemcu board and rosserial features.
@@ -144,4 +157,4 @@ https://medium.com/@mehmetaraksoy/i-want-to-start-with-what-is-not-ros-2245459a9
 https://www.google.com/search?client=firefox-b-d&q=rosserial
 https://www.ros.org/
 https://maker.pro/arduino/tutorial/how-to-use-arduino-with-robot-operating-system-ros
-
+https://www.open-electronics.org/presenting-mq-sensors-low-cost-gas-and-pollution-detectors/
