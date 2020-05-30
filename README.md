@@ -21,17 +21,40 @@ ESP board's information and configuration are not valid on Arduino by default in
 The file of mq_sensor_ROS includes MQ-* sensor configuration with nodemcu board and rosserial features.
 The file of mq_servo_ROS includes MQ-* servo motor configuration with nodemcu board and rosserial features.
 The file of mq_all_ROS includes MQ-* whole configuration with nodemcu board and rosserial features.
+## Ros melodic installition 
+
+```sudo apt install ros-melodic-desktop```
+
+
+``` sudo apt-get install ros-melodic-rosserial sudo apt-get install ros-melodic-rosserial-arduino ```
+## Roslib installition on Arduino IDE
+
+Navigate to Sketch > Include Library > Manage Library in the IDE and search for ```rosserial``` package
+![ide](https://github.com/mcagriaksoy/ros_nodemcu_rosserial_sensor/blob/master/ide.JPG)
 
 ## Rosserial Connection Steps
 First of all, we need to run the roscore on terminal. ``` roscore ```
+![roscore](https://github.com/mcagriaksoy/ros_nodemcu_rosserial_sensor/blob/master/roscore.JPG)
+
+
+Note: Sometimes permission denied for connecting the related com port error can be seen. To prevent this you can run the chmod command with desired number 1-777 each of them have some specific permission levels.  ```sudo chmod 666 /dev/ttyUSB0 ``` 
+
+On the other hand your computer com port can be named different. USB0-USB1-ACM etc.
+
+
 Then listen the COM port and listen to data from the board via: ```rosrun rosserial_python serial_node.py```
-#
+![roscore](https://github.com/mcagriaksoy/ros_nodemcu_rosserial_sensor/blob/master/rosrun.JPG)
+**
 If any rostopic is created we can use ```rostopic pub toggle_led std_msgs/UInt16 "data: 0" ```  The data can be 0-1 due to our example. For an example of an LED example which is [here](https://maker.pro/arduino/tutorial/how-to-use-arduino-with-robot-operating-system-ros), we can use this command to trigger the data 1 or 0 via rostopic command.
 
 # Summary
 
-In summary, thanks to this project I have learned how to install ros on OS, what is rosserial and how can we use and implement it in our Arduino based boards. Also, I have understood that rosserial does not work very well on ESP based boards. I recommend using AVR based boards like Arduino Uno, instead of ESPDuino or similar ESP8266 or many different versions of ESP. I have found rosserial has still some open issues regarding this support. 
+In summary, thanks to this project I have learned how to install ros on OS, what is rosserial and how can we use and implement it in our Arduino based boards. 
+
+Also, I have understood that rosserial does not work very well on ESP based boards. I recommend using AVR based boards like Arduino Uno, instead of ESPDuino or similar ESP8266 or many different versions of ESP. I have found rosserial has still some open issues regarding this support. 
+
 On the other hand, nodemcu boards only supply 3.3v at max. So I have used some USB to TTL converter to simply gain 5V from the computer's USB. Thanks to this converter I have connected my sensor 5v input and servo's 5v input. 
+
 The rosserial becomes very popular and easy to use, Arduino programming is also very enjoyable and easy. The rosserial allows us to interface between ros and our development boards, so, enables the use of two very famous and useful technologies to explore new opportunities in robotics. This method allows for distributed computing, centralized control, control abstraction, and several other benefits to robotic systems at a very low cost.
 # Thanks
 Prof. Dr. Haluk Kucuk for supporting me and instructing the lecture.
