@@ -133,6 +133,7 @@ In summary, thanks to this project I have learned how to install ros on OS, what
 Also, I have understood that rosserial does not work very well on ESP based boards. I recommend using AVR based boards like Arduino Uno, instead of ESPDuino or similar ESP8266 or many different versions of ESP. I have found rosserial has still some open issues regarding this support. 
 
 On the other hand, nodemcu boards only supply 3.3v at max. So I have used some USB to TTL converter to simply gain 5V from the computer's USB. Thanks to this converter I have connected my sensor 5v input and servo's 5v input. 
+![usbtottl](https://github.com/mcagriaksoy/ros_nodemcu_rosserial_sensor/blob/master/usbttl.jpg)
 
 The rosserial becomes very popular and easy to use, Arduino programming is also very enjoyable and easy. The rosserial allows us to interface between ros and our development boards, so, enables the use of two very famous and useful technologies to explore new opportunities in robotics. This method allows for distributed computing, centralized control, control abstraction, and several other benefits to robotic systems at a very low cost.
 # Thanks
