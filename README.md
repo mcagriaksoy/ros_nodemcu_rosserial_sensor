@@ -20,7 +20,86 @@ ESP board's information and configuration are not valid on Arduino by default in
 #
 The file of mq_sensor_ROS includes MQ-* sensor configuration with nodemcu board and rosserial features.
 The file of mq_servo_ROS includes MQ-* servo motor configuration with nodemcu board and rosserial features.
-The file of mq_all_ROS includes MQ-* whole configuration with nodemcu board and rosserial features.
+``` cpp
+// Sensor with Buzzer example by Cagri.Aksoy
+#include <ESP8266WiFi.h>  
+#include <ros.h>
+#include <std_msgs/String.h>
+
+ros::NodeHandle  nh;
+
+std_msgs::String str_msg;
+ros::Publisher chatter("chatter", &str_msg);
+
+char hello[13] = "hello world!";
+// threshold value
+int sensorThres = 400;
+int Led = D1;
+int smokeA0 = A0;
+int buzzer = D2;
+void setup()
+{
+  Serial.begin(57600);
+  nh.initNode();
+  nh.advertise(chatter);
+}
+
+void loop()
+{
+  int analogSensor = analogRead(smokeA0);
+
+  Serial.print("Pin A0: ");
+  Serial.println(analogSensor);
+  // Checks if it has reached the threshold value
+  if (analogSensor > sensorThres)
+  {
+    digitalWrite(Led, HIGH);
+    tone(buzzer, 1000, 200);
+  }
+  else
+  {
+    digitalWrite(Led, LOW);
+    noTone(buzzer);
+  }
+  delay(100);
+  str_msg.data = hello;
+  chatter.publish( &str_msg );
+  nh.spinOnce();
+  delay(1000);
+}
+```
+```cpp 
+servo control example
+#define ESP8266
+#include <Servo.h> 
+#include <ros.h>
+#include <ESP8266WiFi.h>
+#include <std_msgs/UInt16.h>
+
+ros::NodeHandle  nh;
+int Servo_pin D1;
+Servo servo;
+
+void servo_cb( const std_msgs::UInt16& cmd_msg){
+  servo.write(cmd_msg.data); //set servo angle, should be from 0-180  
+  digitalWrite(13, HIGH-digitalRead(13));  //toggle led  
+}
+ros::Subscriber<std_msgs::UInt16> sub("servo", servo_cb);
+  
+  void setup(){
+  pinMode(13, OUTPUT);
+  
+  nh.initNode();
+  nh.subscribe(sub);
+
+  servo.attach(Servo_pin); //attach it to pin Servo_pin
+}
+
+void loop(){
+  nh.spinOnce();
+  delay(100);
+}
+```
 ## Ros melodic installition 
 
 ```sudo apt install ros-melodic-desktop```
