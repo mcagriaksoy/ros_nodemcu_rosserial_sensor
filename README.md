@@ -1,4 +1,4 @@
-# NodeMCU Ros Project
+# NodeMcu ROS Project
 These instructions and information are written by me(hmet cagri aksoy). The project is about ROS Controlled NodeMCU Sensor read and servo control. This project is prepared for robotics final lecture which is ongoing master deggre with EE7055 ID on [Marmara University.](https://www.marmara.edu.tr/en)
 
 # Preliminary Information
